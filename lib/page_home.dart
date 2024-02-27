@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phuchung_63130476/page_profile.dart';
+import 'package:phuchung_63130476/page_test.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -15,7 +16,10 @@ class PageHome extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              _buildButton(context, lable: "My Profile", destination: MyProfile())
+              SizedBox(height: 10),
+              _buildButton(context, lable: "My Profile", destination: MyProfile()),
+              SizedBox(height: 10),
+              _buildButton(context, lable: "My Test", destination: MyTest()),
             ],
           ),
         ),

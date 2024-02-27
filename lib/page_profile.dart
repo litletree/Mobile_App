@@ -9,9 +9,11 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  // properties của class
   String? gioiTinh = "nam";
   String? phepTinh = "Cộng";
-  List<String> phepTinhs = ["Cộng", "Trừ", "Nhân", "Chia","Tính Tiền"];
+  List<String> phepTinhs = ["Cộng", "Trừ", "Nhân", "Chia", "Tính Tiền"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,14 +23,14 @@ class _MyProfileState extends State<MyProfile> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Container(
-                  width: 300,
-                  height: 200,
+                  width: 400,
+                  height: 300,
                   child: Image.asset("assets/images/Malenia.jpg"),
                 ),
               ),
