@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:phuchung_63130476/list_view/list_view.dart';
 import 'package:phuchung_63130476/page_profile.dart';
 import 'package:phuchung_63130476/page_test.dart';
+import 'package:phuchung_63130476/routing/my_route.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -20,6 +22,10 @@ class PageHome extends StatelessWidget {
               _buildButton(context, lable: "My Profile", destination: MyProfile()),
               SizedBox(height: 10),
               _buildButton(context, lable: "My Test", destination: MyTest()),
+              SizedBox(height: 10,),
+              _buildButton(context, lable: "My List View", destination: PageListView()),
+              SizedBox(height: 10,),
+              _buildButton(context, lable: "My First Page", destination: FirstPage()),
             ],
           ),
         ),
