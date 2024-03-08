@@ -21,7 +21,7 @@ class PageCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //var counter = context.watch<CounterState>();
-    int? v = 0;
+    int? v;
     return Scaffold(
       appBar: AppBar(
         title: Text("Counter Provider"),
