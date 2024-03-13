@@ -16,7 +16,7 @@ class _MyProfileState extends State<MyProfile> {
   // properties của class
   StringWrapper phepTinh = StringWrapper(value: "Cộng");
   List<String> phepTinhs = ["Cộng", "Trừ", "Nhân", "Chia", "Tính Tiền"];
-  StringWrapper hocBong = StringWrapper(value: "Rồi");
+  StringWrapper hocBong = StringWrapper(value: "Chưa");
   List<String> hocBongs = ["Rồi", "Chưa"];
   StringWrapper buoiHoc = StringWrapper(value: "Một");
   StringWrapper gioiTinh = StringWrapper(value: "Nam");
