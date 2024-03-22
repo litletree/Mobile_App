@@ -7,6 +7,7 @@ import 'package:phuchung_63130476/routing/my_route.dart';
 import 'package:phuchung_63130476/app_state/changenotifier_counter.dart';
 import 'package:phuchung_63130476/list_provider/giohang_app.dart';
 import 'package:phuchung_63130476/getx/get_counter.dart';
+import 'package:phuchung_63130476/app_fruit_store/page_home_fruit_store.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
@@ -36,6 +37,8 @@ class PageHome extends StatelessWidget {
               _buildButton(context, lable: "Fruit Store", destination: AppStore()),
               SizedBox(height: 10,),
               _buildButton(context, lable: "GetX Demo", destination: PageGetxCounter()),
+              SizedBox(height: 10,),
+              _buildButton(context, lable: "Fruit Market", destination: FruitStoreApp()),
             ],
           ),
         ),
