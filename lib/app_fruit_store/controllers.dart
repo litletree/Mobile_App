@@ -7,6 +7,7 @@ class SimpleControllerSP extends GetxController{
 
   List<Fruit> get dssp => _dssp;
   List<GioHang_item> get gioHang => _gioHang;
+  int get slMHGH => _gioHang.length;
 
   static SimpleControllerSP get controller => Get.find<SimpleControllerSP>();
 

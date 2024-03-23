@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:badges/badges.dart' as badges;
+import 'package:phuchung_63130476/app_fruit_store/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:phuchung_63130476/app_fruit_store/controllers.dart';
@@ -27,16 +28,7 @@ class PageHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Fruit Market"), backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        actions: [
-          GetBuilder(
-              id: "gioHang",
-              builder: (controller) {
-                return badges.Badge(
 
-                );
-              },
-          )
-        ],
       ),
       body: GetBuilder<SimpleControllerSP>(
         id: "ListSP",
@@ -84,8 +76,28 @@ class PageChiTiet extends StatelessWidget {
     double rating = Random().nextInt(21)/10.0+3;
     return Scaffold(
       appBar: AppBar(
-        title: Text(""),
+        title: Text("Chi tiết sản phẩm"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          GetBuilder<SimpleControllerSP>(
+            id: "gioHang",
+            builder: (controller) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: badges.Badge(
+                  onTap: () {
+                  Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => GioHangPage())
+              );},
+                child: badges.Badge(
+                  showBadge: controller.slMHGH > 0 ,
+                  child: Icon(Icons.shopping_cart_outlined),
+                  badgeContent: Text("${controller.slMHGH}"),
+                ),
+              ));
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -144,6 +156,21 @@ class PageChiTiet extends StatelessWidget {
           SimpleControllerSP.controller.themVaoGH(sp, updateWidgetIds: ["gioHang"]);
         },
         child: Icon(Icons.add_shopping_cart, color: Colors.purple,),
+      ),
+    );
+  }
+}
+
+class GioHangPage extends StatelessWidget {
+  const GioHangPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Gio hang"),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
       ),
     );
   }
