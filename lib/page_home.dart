@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phuchung_63130476/app_state/page_counter.dart';
+import 'package:phuchung_63130476/json_list/page_list_photo.dart';
 import 'package:phuchung_63130476/list_view/list_view.dart';
 import 'package:phuchung_63130476/page_profile.dart';
 import 'package:phuchung_63130476/page_test.dart';
@@ -39,6 +40,8 @@ class PageHome extends StatelessWidget {
               _buildButton(context, lable: "GetX Demo", destination: PageGetxCounter()),
               SizedBox(height: 10,),
               _buildButton(context, lable: "Fruit Market", destination: FruitStoreApp()),
+              SizedBox(height: 10,),
+              _buildButton(context, lable: "JSON", destination: PageListPhotos()),
             ],
           ),
         ),
