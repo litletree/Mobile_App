@@ -7,15 +7,22 @@ import 'package:phuchung_63130476/app_fruit_store/controllers.dart';
 import 'package:phuchung_63130476/app_fruit_store/models.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../helper/widget_connect_firebase.dart';
+
+
 class FruitStoreApp extends StatelessWidget {
   const FruitStoreApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialBinding: FruitStoreBindings(),
-      home: PageHome(),
+    return MyFirebaseConnect(
+      errorMessage: "Lỗi kết nối Firebase",
+      connectingMessage: "Đang kết nối...",
+      builder:(context) => GetMaterialApp(
+        initialBinding: FruitStoreBindings(),
+        debugShowCheckedModeBanner: false,
+        home: PageHome(),
+      ),
     );
   }
 }
@@ -47,9 +54,9 @@ class PageHome extends StatelessWidget {
                     child: Column(
                      children: [
                        Expanded(
-                           child: sp.url != null ? AspectRatio(
+                           child: sp.anh != null ? AspectRatio(
                                aspectRatio: 1,
-                               child: Image.network(sp.url!)
+                               child: Image.network(sp.anh!)
                            ):Icon(Icons.image_not_supported)
                        ),
                        Text(sp.ten),
@@ -108,7 +115,7 @@ class PageChiTiet extends StatelessWidget {
             children: [
               Container(
                 width: w,
-                child: sp.url != null? Image.network(sp.url!):Icon(Icons.hide_image_rounded),
+                child: sp.anh != null? Image.network(sp.anh!):Icon(Icons.hide_image_rounded),
               ),
               Text(sp.ten, style: TextStyle(fontSize: 20),),
               Row(
@@ -120,7 +127,7 @@ class PageChiTiet extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text("${sp.moTa}", style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic)),
+                  Text("${sp.mota}", style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic)),
                 ],
               ),
               Row(

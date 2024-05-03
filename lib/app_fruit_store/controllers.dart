@@ -11,6 +11,18 @@ class SimpleControllerSP extends GetxController{
 
   static SimpleControllerSP get controller => Get.find<SimpleControllerSP>();
 
+  @override
+  void onReady(){
+    super.onReady();
+    docDL();
+  }
+
+  Future<void> docDL() async{
+    var list = await FruitSnapshot.getAll2();
+    _dssp = list.map((fruitSnap) => fruitSnap.fruit).toList();
+    update(["listSP"]);
+  }
+
   void themVaoGH(Fruit sp, {List<String>? updateWidgetIds}){
     for(GioHang_item item in gioHang)
       if(item.idSP == sp.id){
@@ -21,11 +33,11 @@ class SimpleControllerSP extends GetxController{
     update(updateWidgetIds);
 }
 
-  @override
-  void onInit() {
-    _dssp = AppData().dssp;
-    update(["ListSP"]);
-  }
+  // @override
+  // void onInit() {
+  //   _dssp = AppData().dssp;
+  //   update(["ListSP"]);
+  // }
 }
 
 class FruitStoreBindings extends Bindings{

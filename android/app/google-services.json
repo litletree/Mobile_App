@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "923519713075",
+    "project_id": "dophuchung-firebase",
+    "storage_bucket": "dophuchung-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923519713075:android:00a5c4e6f86984f6af0846",
+        "android_client_info": {
+          "package_name": "vn.edu.ntu.phuchung.dophuchung_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEQxj2zpUm0zkYKICfsgMGPmeMtLWkA6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923519713075:android:28761df92037488baf0846",
+        "android_client_info": {
+          "package_name": "vn.edu.ntu.phuchung.phuchung_63130476"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEQxj2zpUm0zkYKICfsgMGPmeMtLWkA6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

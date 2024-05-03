@@ -1,10 +1,76 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Fruit{
   String id, ten;
-  double gia;
-  String? url;
-  String? moTa;
+  int gia;
+  String? anh;
+  String? mota;
   Fruit({required this.id, required this.ten,
-    required this.gia, this.url, this.moTa});
+    required this.gia, this.anh, this.mota});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': this.id,
+      'ten': this.ten,
+      'gia': this.gia,
+      'anh': this.anh,
+      'mota': this.mota,
+    };
+  }
+
+  factory Fruit.fromJson(Map<String, dynamic> map) {
+    return Fruit(
+      id: map['id'] as String,
+      ten: map['ten'] as String,
+      gia: map['gia'] as int,
+      anh: map['anh'] as String,
+      mota: map['mota'] as String,
+    );
+  }
+}
+
+class FruitSnapshot {
+  Fruit fruit;
+  DocumentReference ref;
+
+  FruitSnapshot({
+    required this.fruit,
+    required this.ref,
+  });
+
+  factory FruitSnapshot.fromMap(DocumentSnapshot docSnap) {
+    return FruitSnapshot(
+      fruit: Fruit.fromJson(docSnap.data() as Map<String, dynamic>),
+      ref: docSnap.reference,
+    );
+  }
+  static Future<DocumentReference> themMoi(Fruit fruit) async{
+    return FirebaseFirestore.instance.collection("Fruit").add(fruit.toJson());
+  }
+
+  Future<void> capNhat(Fruit fruit) async{
+    return ref.update(fruit.toJson());
+  }
+
+  Future<void> xoa() async{
+    return ref.delete();
+  }
+
+  // truy van du lieu thoi gian thuc
+  static Stream<List<FruitSnapshot>> getAll(){
+    Stream<QuerySnapshot> sqs = FirebaseFirestore.instance.collection("Fruit").snapshots();
+    return sqs.map(
+            (qs) => qs.docs.map(
+                    (docSnap) => FruitSnapshot.fromMap(docSnap)
+            ).toList());
+  }
+  //Truy van du lieu 1 lan
+  static Future<List<FruitSnapshot>> getAll2() async{
+    QuerySnapshot qs = await FirebaseFirestore.instance.collection("Fruit").get();
+    return qs.docs.map(
+            (docSnap) => FruitSnapshot.fromMap(docSnap)
+    ).toList();
+  }
 }
 
 class GioHang_item{
@@ -28,16 +94,16 @@ Map<String, String> images = {
 
 class AppData{
   final List<Fruit> _dssp = [
-    Fruit(id: "01", ten: "Táo", gia: 40000, url: images["Tao"], moTa: "Táo đỏ khác táo xanh"),
-    Fruit(id: "02", ten: "Nho", gia: 60000, url: images["Nho"], moTa: "Nho ăn cho đẹp da"),
-    Fruit(id: "03", ten: "Quýt", gia: 30000, url: images["Quyt"], moTa: "quýt ngọt"),
-    Fruit(id: "04", ten: "Cam", gia: 45000, url: images["Cam"], moTa: "Cam để ép nước"),
-    Fruit(id: "05", ten: "Mít", gia: 200000, url: images["Mit"], moTa: "Mít chia cho hàng xóm"),
-    Fruit(id: "06", ten: "Bưởi", gia: 20000, url: images["Buoi"], moTa: "Bưởi để đơm"),
-    Fruit(id: "07", ten: "Ổi", gia: 380000, url: images["Oi"], moTa: "không thích ăn ổi"),
-    Fruit(id: "08", ten: "Thanh long", gia: 37500, url: images["Thanh long"], moTa: "Giải cứu thanh long"),
-    Fruit(id: "09", ten: "Chôm chôm", gia: 79000, url: images["Chom chom"], moTa: "Chôm chôm đỏ"),
-    Fruit(id: "10", ten: "Đu đủ", gia: 17000, url: images["Du du"], moTa: "đu đủ không thích ăn"),
+    Fruit(id: "01", ten: "Táo", gia: 40000, anh: images["Tao"], mota: "Táo đỏ khác táo xanh"),
+    Fruit(id: "02", ten: "Nho", gia: 60000, anh: images["Nho"], mota: "Nho ăn cho đẹp da"),
+    Fruit(id: "03", ten: "Quýt", gia: 30000, anh: images["Quyt"], mota: "quýt ngọt"),
+    Fruit(id: "04", ten: "Cam", gia: 45000, anh: images["Cam"], mota: "Cam để ép nước"),
+    Fruit(id: "05", ten: "Mít", gia: 200000, anh: images["Mit"], mota: "Mít chia cho hàng xóm"),
+    Fruit(id: "06", ten: "Bưởi", gia: 20000, anh: images["Buoi"], mota: "Bưởi để đơm"),
+    Fruit(id: "07", ten: "Ổi", gia: 380000, anh: images["Oi"], mota: "không thích ăn ổi"),
+    Fruit(id: "08", ten: "Thanh long", gia: 37500, anh: images["Thanh long"], mota: "Giải cứu thanh long"),
+    Fruit(id: "09", ten: "Chôm chôm", gia: 79000, anh: images["Chom chom"], mota: "Chôm chôm đỏ"),
+    Fruit(id: "10", ten: "Đu đủ", gia: 17000, anh: images["Du du"], mota: "đu đủ không thích ăn"),
   ];
   List<Fruit> get dssp => _dssp;
 }
