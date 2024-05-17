@@ -5,6 +5,7 @@ import 'package:phuchung_63130476/json_list/page_list_photo.dart';
 import 'package:phuchung_63130476/list_view/list_view.dart';
 import 'package:phuchung_63130476/page_profile.dart';
 import 'package:phuchung_63130476/page_test.dart';
+import 'package:phuchung_63130476/phone/danhba.dart';
 import 'package:phuchung_63130476/routing/my_route.dart';
 import 'package:phuchung_63130476/app_state/changenotifier_counter.dart';
 import 'package:phuchung_63130476/list_provider/giohang_app.dart';
@@ -48,6 +49,8 @@ class PageHome extends StatelessWidget {
               _buildButton(context, lable: "JSON", destination: PageListPhotos()),
               SizedBox(height: 10,),
               _buildButton(context, lable: "RSS", destination: RssAPP()),
+              SizedBox(height: 10,),
+              _buildButton(context, lable: "Phone SMS", destination: PhoneSMSPage()),
             ],
           ),
         ),

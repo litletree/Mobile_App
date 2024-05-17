@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:phuchung_63130476/app_fruit_store/models.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:phuchung_63130476/app_fruit_store/page_them_sp_admin.dart';
+import 'package:phuchung_63130476/app_fruit_store/page_capnhat_sp_admin.dart';
+import 'package:phuchung_63130476/helper/storage_image_helper.dart';
 import 'package:phuchung_63130476/helper/widget_connect_firebase.dart';
 
 class FruitStoreAdmin extends StatelessWidget {
@@ -48,26 +52,23 @@ class PageDSSP_Admin extends StatelessWidget {
                       motion: ScrollMotion(),
                       children: [
                         SlidableAction(
-                            icon: Icons.remove_red_eye_rounded,
-                            label: "Xem",
-                            foregroundColor: Colors.green,
-                            onPressed: (context){
-
-                            },
+                          onPressed: (context) {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => PageCapNhatSP_Admin(fruitSnapShot: fruitSnap,),));
+                          },
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          icon: Icons.edit,
+                          label: "Cập nhật",
                         ),
                         SlidableAction(
-                            icon: Icons.edit,
-                            label: "Cập Nhật",
-                            foregroundColor: Colors.blue,
-                            onPressed: (context){
-                            },
-                        ),
-                        SlidableAction(
-                            icon: Icons.delete,
-                            label: "Xóa",
-                            foregroundColor: Colors.red,
-                            onPressed: (context){
-                            },
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: "Xóa",
+                          onPressed: (context) async{
+                            await deleteImage(folders: ["fruit_app"], fileName: "${fruitSnap.fruit.id}.jpg");
+                            await fruitSnap.xoa();
+                          },
                         ),
                       ]
                   ),
@@ -84,7 +85,7 @@ class PageDSSP_Admin extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("id: ${fruitSnap.fruit.id}"),
+                                Text("id: ${fruitSnap.fruit.id}",),
                                 Text("Tên: ${fruitSnap.fruit.ten}"),
                                 Text("Giá: ${fruitSnap.fruit.gia}"),
                                 Text("Mô tả: ${fruitSnap.fruit.mota?? ""}"),
@@ -105,7 +106,10 @@ class PageDSSP_Admin extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
-
+          Navigator.of(context).push(
+           MaterialPageRoute(builder: (context) =>
+           PageThemSP_Admin(),
+           ));
         },
       ),
     );
